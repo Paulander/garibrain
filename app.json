@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "PartnerOps",
+    "slug": "partnerops",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "partnerops",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.partnerops.app",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "PartnerOps uses Face ID to protect your private relationship notes."
+      }
+    },
+    "android": {
+      "package": "com.partnerops.app",
+      "permissions": [
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT",
+        "POST_NOTIFICATIONS"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-notifications"
+    ],
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}
