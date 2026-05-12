@@ -32,7 +32,7 @@ export default function PreferenceStarter() {
 
   return (
     <Screen>
-      <SectionTitle title="Add first detail" subtitle="Start with one useful memory. You can add more later." />
+      <SectionTitle eyebrow="Setup" title="Add First Detail" subtitle="Start with one useful memory. You can add more later." />
       <Panel>
         <Field label="Title" value={title} onChangeText={setTitle} />
         <Field label="Details" value={value} onChangeText={setValue} placeholder="Dark chocolate, no orange filling" />

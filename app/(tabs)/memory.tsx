@@ -1,8 +1,9 @@
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
+import { BookmarkPlus, Search } from "lucide-react-native";
 import { PreferenceCard } from "@/src/components/PreferenceCard";
-import { Field, Panel, Pill, PrimaryButton, Screen, SectionTitle } from "@/src/components/ui";
+import { Field, Metric, Panel, Pill, PrimaryButton, RowItem, Screen, SectionTitle, colors } from "@/src/components/ui";
 import { Importance, Preference, Sentiment } from "@/src/domain/models";
 import { partnerRepo } from "@/src/db/repositories/partnerRepo";
 import { preferenceRepo } from "@/src/db/repositories/preferenceRepo";
@@ -48,8 +49,26 @@ export default function MemoryScreen() {
 
   return (
     <Screen>
-      <SectionTitle title="Memory" subtitle="Store useful details without turning it into a complaint log." />
+      <SectionTitle
+        eyebrow="Memory"
+        title="Memory"
+        subtitle="Store useful details without turning it into a complaint log."
+        right={<Search color={colors.sage} size={30} />}
+      />
+      <Panel tone="elevated">
+        <Text style={{ color: colors.ivory, fontWeight: "800", fontSize: 16 }}>Intel Snapshot</Text>
+        <View style={{ flexDirection: "row" }}>
+          <Metric value={preferences.length} label="Intel Saved" tone="sage" />
+          <Metric value={preferences.filter((pref) => pref.sentiment === "dislikes").length} label="Dislikes" tone="red" />
+          <Metric value={preferences.filter((pref) => pref.importance === "critical").length} label="Critical" tone="amber" />
+        </View>
+      </Panel>
       <Panel>
+        <RowItem
+          icon={<BookmarkPlus color={colors.sage} size={22} />}
+          title="Quick Capture"
+          meta="A single useful note beats a heroic memory performance."
+        />
         <Field label="Title" value={title} onChangeText={setTitle} />
         <Field label="Category" value={category} onChangeText={setCategory} />
         <Field label="Details" value={value} onChangeText={setValue} placeholder="Wants to go to Greece" />

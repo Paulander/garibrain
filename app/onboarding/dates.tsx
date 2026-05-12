@@ -51,9 +51,9 @@ export default function DatesSetup() {
 
   return (
     <Screen>
-      <SectionTitle title="Important dates" subtitle="Mother's Day varies by country, so keep it manual for now." />
+      <SectionTitle eyebrow="Setup" title="Important Dates" subtitle="Mother's Day varies by country, so keep it manual for now." />
       <Panel>
-        <Text style={{ color: colors.muted, lineHeight: 22 }}>
+        <Text style={{ color: colors.muted2, lineHeight: 22 }}>
           PartnerOps can turn saved birthdays, anniversaries, and custom dates into lead reminders and Today cards.
         </Text>
         <PrimaryButton label="Use profile dates" onPress={addFromProfile} />

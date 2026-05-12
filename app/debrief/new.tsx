@@ -37,7 +37,7 @@ export default function NewDebriefScreen() {
 
   return (
     <Screen>
-      <SectionTitle title="Debrief" subtitle="A learning tool, not a complaint log." />
+      <SectionTitle eyebrow="Log" title="Debrief" subtitle="A learning tool, not a complaint log." />
       <Panel>
         <Field label="Title" value={title} onChangeText={setTitle} />
         <Field label="What worked?" value={whatWorked} onChangeText={setWhatWorked} multiline />

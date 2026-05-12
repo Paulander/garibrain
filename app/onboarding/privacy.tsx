@@ -30,13 +30,13 @@ export default function PrivacySetup() {
 
   return (
     <Screen>
-      <SectionTitle title="Choose your privacy level" subtitle="Strong privacy, no deceptive camouflage." />
+      <SectionTitle eyebrow="Setup" title="Privacy Level" subtitle="Strong privacy, no deceptive camouflage." />
       <Panel>
         <View style={{ gap: 10 }}>
           {levels.map((level) => (
             <View key={level.value} style={{ gap: 6 }}>
               <Pill label={level.label} selected={privacy === level.value} onPress={() => setPrivacy(level.value)} />
-              <Text style={{ color: colors.muted }}>{level.body}</Text>
+              <Text style={{ color: colors.muted2 }}>{level.body}</Text>
             </View>
           ))}
         </View>

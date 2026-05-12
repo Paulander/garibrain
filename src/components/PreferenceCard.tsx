@@ -1,14 +1,19 @@
 import { Text } from "react-native";
 import { Preference } from "@/src/domain/models";
-import { Panel, colors } from "@/src/components/ui";
+import { BookmarkCheck } from "lucide-react-native";
+import { Panel, Pill, RowItem, colors } from "@/src/components/ui";
 
 export function PreferenceCard({ preference }: { preference: Preference }) {
   return (
     <Panel>
-      <Text style={{ color: colors.ink, fontSize: 17, fontWeight: "800" }}>{preference.title}</Text>
-      <Text style={{ color: colors.muted }}>{preference.category} - {preference.sentiment} - {preference.importance}</Text>
-      <Text style={{ color: colors.ink, lineHeight: 21 }}>{preference.value}</Text>
-      {preference.isSensitive ? <Text style={{ color: colors.danger, fontWeight: "700" }}>Sensitive</Text> : null}
+      <RowItem
+        icon={<BookmarkCheck color={colors.sage} size={22} />}
+        title={preference.title}
+        meta={`${preference.category} - ${preference.sentiment}`}
+        trailing={<Pill label={preference.importance} tone={preference.importance === "critical" ? "blocker" : "info"} />}
+      />
+      <Text style={{ color: colors.ivory, lineHeight: 21 }}>{preference.value}</Text>
+      {preference.isSensitive ? <Pill label="sensitive" tone="blocker" /> : null}
     </Panel>
   );
 }

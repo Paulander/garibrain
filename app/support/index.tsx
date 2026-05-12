@@ -32,9 +32,9 @@ export default function SupportCalendarScreen() {
 
   return (
     <Screen>
-      <SectionTitle title="Support Calendar" subtitle="Support planning, not mood prediction." />
+      <SectionTitle eyebrow="Support" title="Support Calendar" subtitle="Support planning, not mood prediction." />
       <Panel>
-        <Text style={{ color: colors.muted, lineHeight: 22 }}>
+        <Text style={{ color: colors.muted2, lineHeight: 22 }}>
           Add support windows for stressful weeks, low-energy days, or recurring patterns. Cycle estimates stay manual and local.
         </Text>
         <PrimaryButton label="Add cycle-based support window" onPress={() => router.push("/support/cycle")} />

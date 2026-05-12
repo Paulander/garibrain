@@ -1,18 +1,24 @@
 import { Tabs } from "expo-router";
-import { Bell, CalendarDays, Flame, ListChecks, Settings } from "lucide-react-native";
+import { AlertTriangle, CalendarDays, Home, Settings, Search } from "lucide-react-native";
 import { QuickLockButton } from "@/src/components/QuickLockButton";
-
-const tint = "#355C5C";
+import { colors } from "@/src/components/ui";
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerStyle: { backgroundColor: "#F7F4EE" },
-        headerTintColor: "#17201D",
-        tabBarActiveTintColor: tint,
-        tabBarInactiveTintColor: "#66736B",
-        tabBarStyle: { backgroundColor: "#FBF8F2", borderTopColor: "#DDD5CA" },
+        headerShown: false,
+        headerStyle: { backgroundColor: colors.ink },
+        headerTintColor: colors.ivory,
+        tabBarActiveTintColor: colors.sage,
+        tabBarInactiveTintColor: colors.muted2,
+        tabBarLabelStyle: { fontSize: 11, fontWeight: "700" },
+        tabBarStyle: {
+          minHeight: 70,
+          borderTopColor: colors.line,
+          backgroundColor: "rgba(15, 19, 18, 0.98)",
+          paddingTop: 7
+        },
         headerRight: () => <QuickLockButton />
       }}
     >
@@ -20,7 +26,7 @@ export default function TabLayout() {
         name="today"
         options={{
           title: "Today",
-          tabBarIcon: ({ color, size }) => <Bell color={color} size={size} />
+          tabBarIcon: ({ color, size }) => <Home color={color} size={size} />
         }}
       />
       <Tabs.Screen
@@ -34,14 +40,14 @@ export default function TabLayout() {
         name="memory"
         options={{
           title: "Memory",
-          tabBarIcon: ({ color, size }) => <ListChecks color={color} size={size} />
+          tabBarIcon: ({ color, size }) => <Search color={color} size={size} />
         }}
       />
       <Tabs.Screen
         name="panic"
         options={{
           title: "Panic",
-          tabBarIcon: ({ color, size }) => <Flame color={color} size={size} />
+          tabBarIcon: ({ color, size }) => <AlertTriangle color={color} size={size} />
         }}
       />
       <Tabs.Screen

@@ -23,7 +23,7 @@ export default function ToneSetup() {
 
   return (
     <Screen>
-      <SectionTitle title="How should the app talk to you?" subtitle="Roast mode teases you, never your partner." />
+      <SectionTitle eyebrow="Setup" title="Tone Mode" subtitle="Roast mode teases you, never your partner." />
       <Panel>
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10 }}>
           {options.map((option) => (

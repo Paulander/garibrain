@@ -34,7 +34,7 @@ export default function SupportPatternScreen() {
 
   return (
     <Screen>
-      <SectionTitle title="Manual Support Pattern" subtitle="Good for stressful weeks, family obligations, or low-energy stretches." />
+      <SectionTitle eyebrow="Support" title="Manual Pattern" subtitle="Good for stressful weeks, family obligations, or low-energy stretches." />
       <Panel>
         <Field label="Pattern name" value={name} onChangeText={setName} />
         <Field label="Start date (YYYY-MM-DD)" value={startDate} onChangeText={setStartDate} />

@@ -11,7 +11,7 @@ export function QuickLockButton() {
       onPress={() => privacyLock.quickLock()}
       style={{ paddingHorizontal: 16, paddingVertical: 8 }}
     >
-      <LockKeyhole color={colors.accent} size={22} />
+      <LockKeyhole color={colors.sage} size={22} />
     </Pressable>
   );
 }

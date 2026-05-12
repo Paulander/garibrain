@@ -1,22 +1,25 @@
 import { Text, View } from "react-native";
-import { AlertTriangle, CheckCircle2, Info } from "lucide-react-native";
+import { AlertTriangle, CheckCircle2, ChevronRight, Info } from "lucide-react-native";
 import { AdviceCard as AdviceCardModel } from "@/src/domain/models";
-import { Panel, PrimaryButton, colors } from "@/src/components/ui";
+import { Panel, Pill, RowItem, colors } from "@/src/components/ui";
 
 export function AdviceCard({ card, onAction }: { card: AdviceCardModel; onAction?: () => void }) {
   const Icon = card.priority === "urgent" ? AlertTriangle : card.priority === "high" ? CheckCircle2 : Info;
-  const iconColor = card.priority === "urgent" ? colors.danger : card.priority === "high" ? colors.gold : colors.accent;
+  const iconColor = card.priority === "urgent" ? colors.red : card.priority === "high" ? colors.amber : colors.sage;
+  const tone = card.priority === "urgent" ? "blocker" : card.priority === "high" ? "watch" : "info";
 
   return (
-    <Panel>
-      <View style={{ flexDirection: "row", gap: 12, alignItems: "flex-start" }}>
-        <Icon color={iconColor} size={24} />
-        <View style={{ flex: 1, gap: 6 }}>
-          <Text style={{ color: colors.ink, fontWeight: "800", fontSize: 17 }}>{card.title}</Text>
-          <Text style={{ color: colors.muted, lineHeight: 21 }}>{card.body}</Text>
-        </View>
+    <Panel tone={card.priority === "urgent" ? "danger" : "default"}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+        <Pill label={card.priority} tone={tone} />
+        {card.actionLabel ? <Text style={{ color: colors.muted2, fontSize: 11 }}>{card.actionLabel}</Text> : null}
       </View>
-      {card.actionLabel && onAction ? <PrimaryButton label={card.actionLabel} onPress={onAction} /> : null}
+      <RowItem
+        icon={<Icon color={iconColor} size={22} />}
+        title={card.title}
+        meta={card.body}
+        trailing={onAction ? <ChevronRight color={colors.muted2} size={18} /> : undefined}
+      />
     </Panel>
   );
 }

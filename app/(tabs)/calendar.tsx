@@ -1,8 +1,9 @@
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
+import { CalendarPlus, ListChecks } from "lucide-react-native";
 import { EventCard } from "@/src/components/EventCard";
-import { Field, Panel, Pill, PrimaryButton, Screen, SectionTitle } from "@/src/components/ui";
+import { BrandMark, Field, Metric, Panel, Pill, PrimaryButton, RowItem, Screen, SectionTitle, colors } from "@/src/components/ui";
 import { RelationshipEvent } from "@/src/domain/models";
 import { eventRepo } from "@/src/db/repositories/eventRepo";
 import { partnerRepo } from "@/src/db/repositories/partnerRepo";
@@ -44,8 +45,26 @@ export default function CalendarScreen() {
 
   return (
     <Screen>
-      <SectionTitle title="Calendar" subtitle="Important dates, support windows, gift deadlines, and follow-ups." />
+      <SectionTitle
+        eyebrow="Calendar"
+        title="Calendar"
+        subtitle="Important dates, support windows, gift deadlines, and follow-ups."
+        right={<BrandMark size={42} />}
+      />
+      <Panel tone="elevated">
+        <Text style={{ color: colors.ivory, fontWeight: "800", fontSize: 16 }}>Schedule Snapshot</Text>
+        <View style={{ flexDirection: "row" }}>
+          <Metric value={events.length} label="Saved Dates" tone="sage" />
+          <Metric value={events.filter((event) => event.recurrence !== "none").length} label="Recurring" tone="info" />
+          <Metric value={events.reduce((count, event) => count + event.leadTimeDays.length, 0)} label="Lead Alerts" tone="amber" />
+        </View>
+      </Panel>
       <Panel>
+        <RowItem
+          icon={<CalendarPlus color={colors.sage} size={22} />}
+          title="Add Important Date"
+          meta="Manual holidays stay manual so country-specific dates do not get guessed."
+        />
         <Field label="Title" value={title} onChangeText={setTitle} />
         <Field label="Date (YYYY-MM-DD)" value={date} onChangeText={setDate} />
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10 }}>
@@ -54,6 +73,9 @@ export default function CalendarScreen() {
           ))}
         </View>
         <PrimaryButton label="Add important date" onPress={saveEvent} />
+      </Panel>
+      <Panel>
+        <RowItem icon={<ListChecks color={colors.sage} size={22} />} title="Agenda" meta="Upcoming date records saved locally." />
       </Panel>
       {events.map((event) => <EventCard key={event.id} event={event} todayIso={todayISO()} />)}
     </Screen>

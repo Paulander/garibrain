@@ -32,7 +32,7 @@ export default function PartnerSetup() {
 
   return (
     <Screen>
-      <SectionTitle title="Partner profile" subtitle="Add only what helps you remember and show up better." />
+      <SectionTitle eyebrow="Setup" title="Partner Profile" subtitle="Add only what helps you remember and show up better." />
       <Panel>
         <Field label="Partner name or nickname" value={displayName} onChangeText={setDisplayName} placeholder="Alex" />
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10 }}>

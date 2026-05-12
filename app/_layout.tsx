@@ -12,10 +12,10 @@ export default function RootLayout() {
     <>
       <Stack
         screenOptions={{
-          headerStyle: { backgroundColor: "#F7F4EE" },
-          headerTintColor: "#17201D",
+          headerStyle: { backgroundColor: "#0B0F10" },
+          headerTintColor: "#F2EFE7",
           headerTitleStyle: { fontWeight: "700" },
-          contentStyle: { backgroundColor: "#F7F4EE" }
+          contentStyle: { backgroundColor: "#0B0F10" }
         }}
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -26,7 +26,7 @@ export default function RootLayout() {
         <Stack.Screen name="support/pattern" options={{ title: "Support Pattern" }} />
         <Stack.Screen name="debrief/new" options={{ title: "New Debrief" }} />
       </Stack>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
     </>
   );
 }

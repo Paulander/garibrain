@@ -36,9 +36,9 @@ export default function CycleSupportScreen() {
 
   return (
     <Screen>
-      <SectionTitle title="Cycle Support" subtitle="Manual estimates for care reminders only." />
+      <SectionTitle eyebrow="Support" title="Cycle Support" subtitle="Manual estimates for care reminders only." />
       <Panel>
-        <Text style={{ color: colors.muted, lineHeight: 22 }}>
+        <Text style={{ color: colors.muted2, lineHeight: 22 }}>
           Cycle-based reminders are estimates for support planning only. They are not medical advice and may be inaccurate.
         </Text>
         <Field label="Last known period start date (YYYY-MM-DD)" value={lastPeriodStartDate} onChangeText={setLastPeriodStartDate} />

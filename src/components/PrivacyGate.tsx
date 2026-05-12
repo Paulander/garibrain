@@ -17,10 +17,10 @@ export function PrivacyGate({ children }: PropsWithChildren) {
   }
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center", gap: 16, padding: 24, backgroundColor: colors.background }}>
-      <LockKeyhole color={colors.accent} size={42} />
-      <Text style={{ color: colors.ink, fontSize: 22, fontWeight: "800", textAlign: "center" }}>PartnerOps is locked</Text>
-      <Text style={{ color: colors.muted, textAlign: "center", lineHeight: 21 }}>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center", gap: 16, padding: 24, backgroundColor: colors.ink }}>
+      <LockKeyhole color={colors.sage} size={42} />
+      <Text style={{ color: colors.ivory, fontSize: 22, fontWeight: "800", textAlign: "center" }}>PartnerOps is locked</Text>
+      <Text style={{ color: colors.muted2, textAlign: "center", lineHeight: 21 }}>
         Unlock to view private notes and sensitive sections.
       </Text>
       <PrimaryButton

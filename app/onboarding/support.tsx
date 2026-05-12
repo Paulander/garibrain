@@ -14,9 +14,9 @@ export default function SupportOptIn() {
 
   return (
     <Screen>
-      <SectionTitle title="Want support reminders?" subtitle="Add recurring windows for patience, practical help, space, affection, or better timing." />
+      <SectionTitle eyebrow="Setup" title="Support Reminders" subtitle="Add recurring windows for patience, practical help, space, affection, or better timing." />
       <Panel>
-        <Text style={{ color: colors.muted, lineHeight: 22 }}>
+        <Text style={{ color: colors.muted2, lineHeight: 22 }}>
           Cycle-based reminders are estimates for support planning only. They are not medical advice and may be inaccurate.
         </Text>
         <PrimaryButton label="Add support pattern later" onPress={complete} />
