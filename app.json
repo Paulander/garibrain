@@ -3,6 +3,9 @@
     "name": "PartnerOps",
     "slug": "partnerops",
     "version": "0.1.0",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "partnerops",
@@ -19,12 +22,14 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.partnerops.app",
+      "buildNumber": "1",
       "infoPlist": {
         "NSFaceIDUsageDescription": "PartnerOps uses Face ID to protect your private relationship notes."
       }
     },
     "android": {
       "package": "com.partnerops.app",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0B0F10"
@@ -47,6 +52,7 @@
       "favicon": "./assets/favicon.png",
       "name": "PartnerOps",
       "shortName": "PartnerOps",
+      "description": "A private relationship memory and planning app.",
       "themeColor": "#0B0F10",
       "backgroundColor": "#0B0F10"
     },

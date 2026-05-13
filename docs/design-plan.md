@@ -16,6 +16,7 @@ Reference direction: dark private ops log, sage shield mark, compact dashboard c
 - Wired Expo app metadata for dark mode, splash, icon, adaptive icon, favicon, and web theme color.
 - Added Inter font loading through Expo font support.
 - Settings now reads the saved local partner profile instead of showing a fixed placeholder profile.
+- Added EAS build profiles and publish-prep docs for store listings, privacy policy, support, data safety, imagegen assets, and launch checklist.
 
 ## Remaining manual/product decisions
 
@@ -23,6 +24,7 @@ Reference direction: dark private ops log, sage shield mark, compact dashboard c
 - Decide whether web should remain a phone-width preview or become a true responsive PWA layout.
 - Replace placeholder profile/settings copy with production copy and support/privacy URLs.
 - Do device QA for biometrics, notifications, secure storage, and SQLite on actual iOS/Android.
+- Run imagegen variants only if the deterministic icon is not strong enough after review.
 
 ## Asset prompts to run later
 

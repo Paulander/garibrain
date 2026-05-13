@@ -35,6 +35,35 @@ npm run typecheck
 npm test
 ```
 
+Preview web locally:
+
+```bash
+npm run web -- --localhost --port 8082
+```
+
+Generate local icon/splash assets from SVG sources:
+
+```bash
+npm run generate-assets
+```
+
+## Release Prep
+
+Draft release docs live in `docs/`:
+
+- `docs/publish-checklist.md`
+- `docs/privacy-policy.md`
+- `docs/support.md`
+- `docs/store-listing.md`
+- `docs/data-safety.md`
+- `docs/imagegen-assets.md`
+
+EAS profiles are configured in `eas.json`. The production build command is:
+
+```bash
+npm run eas:build:all
+```
+
 ## Product Boundaries
 
 PartnerOps is a private memory and planning tool. It is not therapy, medical advice, legal advice, or a health diagnosis tool. Cycle-based reminders are manual estimates for support planning only and may be inaccurate.
