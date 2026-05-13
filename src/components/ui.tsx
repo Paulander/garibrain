@@ -220,6 +220,13 @@ export const colors = {
   border: "#2B3434"
 };
 
+export const fonts = {
+  regular: "Inter_400Regular",
+  semi: "Inter_600SemiBold",
+  bold: "Inter_700Bold",
+  extra: "Inter_800ExtraBold"
+};
+
 const styles = StyleSheet.create({
   appFrame: {
     flex: 1,
@@ -271,6 +278,7 @@ const styles = StyleSheet.create({
   },
   eyebrow: {
     color: colors.sage,
+    fontFamily: fonts.extra,
     fontSize: 12,
     fontWeight: "800",
     letterSpacing: 1.2,
@@ -278,12 +286,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.ivory,
+    fontFamily: fonts.extra,
     fontSize: 28,
     fontWeight: "800",
     letterSpacing: 0
   },
   subtitle: {
     color: colors.muted2,
+    fontFamily: fonts.regular,
     fontSize: 13,
     lineHeight: 18
   },
@@ -322,6 +332,7 @@ const styles = StyleSheet.create({
   },
   pillText: {
     color: colors.ivory,
+    fontFamily: fonts.extra,
     fontSize: 11,
     fontWeight: "800",
     letterSpacing: 0.4,
@@ -348,6 +359,7 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: {
     color: colors.ivory,
+    fontFamily: fonts.extra,
     fontSize: 13,
     fontWeight: "800"
   },
@@ -362,6 +374,7 @@ const styles = StyleSheet.create({
   },
   secondaryButtonText: {
     color: colors.ivory,
+    fontFamily: fonts.bold,
     fontSize: 13,
     fontWeight: "700"
   },
@@ -370,6 +383,7 @@ const styles = StyleSheet.create({
   },
   fieldLabel: {
     color: colors.muted2,
+    fontFamily: fonts.extra,
     fontSize: 11,
     fontWeight: "800",
     letterSpacing: 0.6,
@@ -382,6 +396,7 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     backgroundColor: "rgba(11, 15, 16, 0.72)",
     color: colors.ivory,
+    fontFamily: fonts.regular,
     paddingHorizontal: 12,
     paddingVertical: 10,
     fontSize: 14
@@ -403,11 +418,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8
   },
   metricValue: {
+    fontFamily: fonts.extra,
     fontSize: 24,
     fontWeight: "800"
   },
   metricLabel: {
     color: colors.muted2,
+    fontFamily: fonts.bold,
     fontSize: 10,
     fontWeight: "700",
     textAlign: "center"
@@ -427,11 +444,13 @@ const styles = StyleSheet.create({
   },
   rowTitle: {
     color: colors.ivory,
+    fontFamily: fonts.bold,
     fontSize: 14,
     fontWeight: "700"
   },
   rowMeta: {
     color: colors.muted2,
+    fontFamily: fonts.regular,
     fontSize: 12
   }
 });

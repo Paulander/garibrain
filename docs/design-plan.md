@@ -12,12 +12,14 @@ Reference direction: dark private ops log, sage shield mark, compact dashboard c
 - Redesigned Panic with red panic panel, quick action cards, checklist, and elevated generated ideas.
 - Updated Calendar, Memory, Settings, onboarding, Support Calendar, and Debrief screens to share the same visual language.
 - Added a local SVG brand mark source for later icon and splash asset production.
+- Added generated Expo app icon, Android adaptive icon, splash icon, and web favicon from project SVG sources.
+- Wired Expo app metadata for dark mode, splash, icon, adaptive icon, favicon, and web theme color.
+- Added Inter font loading through Expo font support.
+- Settings now reads the saved local partner profile instead of showing a fixed placeholder profile.
 
 ## Remaining manual/product decisions
 
-- Pick the final app icon direction and generate/export production PNG sizes.
-- Pick the final splash screen treatment.
-- Choose final typography for native builds. The reference uses Inter; the app currently uses system fonts.
+- Decide whether to keep the deterministic shield icon or replace it with generated art from imagegen.
 - Decide whether web should remain a phone-width preview or become a true responsive PWA layout.
 - Replace placeholder profile/settings copy with production copy and support/privacy URLs.
 - Do device QA for biometrics, notifications, secure storage, and SQLite on actual iOS/Android.

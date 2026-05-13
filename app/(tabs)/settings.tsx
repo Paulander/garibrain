@@ -5,20 +5,30 @@ import { Bell, ChevronRight, Cloud, HelpCircle, Moon, ShieldCheck, UserRound } f
 import { BrandMark, Panel, Pill, PrimaryButton, RowItem, Screen, SectionTitle, colors } from "@/src/components/ui";
 import { NotificationPrivacy, ToneMode } from "@/src/domain/models";
 import { settingsRepo } from "@/src/db/repositories/settingsRepo";
+import { partnerRepo } from "@/src/db/repositories/partnerRepo";
 import { deleteEverything, exportLocalData } from "@/src/services/exportImport";
 
 export default function SettingsScreen() {
   const [tone, setTone] = useState<ToneMode>("standard");
   const [notificationPrivacy, setNotificationPrivacy] = useState<NotificationPrivacy>("neutral");
   const [exportPreview, setExportPreview] = useState("");
+  const [profileLabel, setProfileLabel] = useState("Partner profile");
+  const [profileMeta, setProfileMeta] = useState("No partner profile loaded");
 
   useFocusEffect(useCallback(() => {
-    settingsRepo.get().then((settings) => {
+    async function load() {
+      const [settings, partners] = await Promise.all([settingsRepo.get(), partnerRepo.list()]);
       if (settings) {
         setTone(settings.toneMode);
         setNotificationPrivacy(settings.notificationPrivacy);
       }
-    });
+      const [partner] = partners;
+      if (partner) {
+        setProfileLabel(partner.displayName);
+        setProfileMeta(`${partner.relationshipType} - local-only profile`);
+      }
+    }
+    void load();
   }, []));
 
   async function saveSettings(nextTone = tone, nextPrivacy = notificationPrivacy) {
@@ -43,8 +53,8 @@ export default function SettingsScreen() {
       <Panel tone="elevated">
         <RowItem
           icon={<UserRound color={colors.ivory} size={22} />}
-          title="PartnerOps"
-          meta="Private Ops Log. Avoid the landmines."
+          title={profileLabel}
+          meta={profileMeta}
           trailing={<ChevronRight color={colors.muted2} size={18} />}
         />
       </Panel>
@@ -75,7 +85,7 @@ export default function SettingsScreen() {
         <Text style={{ color: colors.muted2, lineHeight: 21 }}>
           PartnerOps is a private memory and planning tool. It is not therapy, medical advice, or a health diagnosis tool.
         </Text>
-        <RowItem icon={<HelpCircle color={colors.sage} size={22} />} title="Help & Resources" meta="Support and privacy policy pages still need public URLs." />
+        <RowItem icon={<HelpCircle color={colors.sage} size={22} />} title="Help & Resources" meta="Manual task: add public support and privacy policy URLs before store submission." />
       </Panel>
     </Screen>
   );

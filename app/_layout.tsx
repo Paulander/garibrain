@@ -2,11 +2,29 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { initializeDatabase } from "@/src/db/database";
 import { useEffect } from "react";
+import {
+  Inter_400Regular,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  Inter_800ExtraBold,
+  useFonts
+} from "@expo-google-fonts/inter";
 
 export default function RootLayout() {
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    Inter_800ExtraBold
+  });
+
   useEffect(() => {
     void initializeDatabase();
   }, []);
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <>

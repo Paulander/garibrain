@@ -4,8 +4,15 @@
     "slug": "partnerops",
     "version": "0.1.0",
     "orientation": "portrait",
+    "icon": "./assets/icon.png",
     "scheme": "partnerops",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0B0F10",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0B0F10"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -18,6 +25,10 @@
     },
     "android": {
       "package": "com.partnerops.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0B0F10"
+      },
       "permissions": [
         "USE_BIOMETRIC",
         "USE_FINGERPRINT",
@@ -27,8 +38,18 @@
     "plugins": [
       "expo-router",
       "expo-secure-store",
-      "expo-notifications"
+      "expo-notifications",
+      "expo-font",
+      "expo-sqlite"
     ],
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png",
+      "name": "PartnerOps",
+      "shortName": "PartnerOps",
+      "themeColor": "#0B0F10",
+      "backgroundColor": "#0B0F10"
+    },
     "experiments": {
       "typedRoutes": false
     }
