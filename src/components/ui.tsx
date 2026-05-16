@@ -184,14 +184,16 @@ export function RowItem({
 
 function Texture() {
   return (
-    <Svg pointerEvents="none" style={styles.texture} viewBox="0 0 390 844" preserveAspectRatio="none">
-      <Path d="M-30 96 C54 45 99 139 171 77 C236 22 280 96 424 40" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.6" />
-      <Path d="M-42 156 C62 89 94 185 176 126 C260 66 297 139 430 94" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.55" />
-      <Path d="M-28 640 C58 594 108 688 184 625 C247 572 292 637 422 590" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.5" />
-      <Path d="M-12 708 C74 655 117 750 205 687 C273 638 323 698 421 657" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.45" />
-      <Circle cx="344" cy="132" r="118" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.14" />
-      <Circle cx="344" cy="132" r="78" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.14" />
-    </Svg>
+    <View style={[styles.texture, { pointerEvents: "none" }]}>
+      <Svg style={StyleSheet.absoluteFillObject} viewBox="0 0 390 844" preserveAspectRatio="none">
+        <Path d="M-30 96 C54 45 99 139 171 77 C236 22 280 96 424 40" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.6" />
+        <Path d="M-42 156 C62 89 94 185 176 126 C260 66 297 139 430 94" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.55" />
+        <Path d="M-28 640 C58 594 108 688 184 625 C247 572 292 637 422 590" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.5" />
+        <Path d="M-12 708 C74 655 117 750 205 687 C273 638 323 698 421 657" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.45" />
+        <Circle cx="344" cy="132" r="118" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.14" />
+        <Circle cx="344" cy="132" r="78" stroke={colors.texture} strokeWidth="1" fill="none" opacity="0.14" />
+      </Svg>
+    </View>
   );
 }
 

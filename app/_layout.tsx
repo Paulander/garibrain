@@ -19,7 +19,9 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    void initializeDatabase();
+    initializeDatabase().catch((error) => {
+      console.error("Failed to initialize local database.", error);
+    });
   }, []);
 
   if (!fontsLoaded) {
@@ -37,7 +39,7 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+        <Stack.Screen name="onboarding/index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="support/index" options={{ title: "Support Calendar" }} />
         <Stack.Screen name="support/cycle" options={{ title: "Cycle Support" }} />
