@@ -1,10 +1,11 @@
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { Text, View } from "react-native";
-import { CalendarPlus, ListChecks } from "lucide-react-native";
+import { CalendarHeart, CalendarPlus, ListChecks } from "lucide-react-native";
 import { EventCard } from "@/src/components/EventCard";
 import { BrandMark, Field, Metric, Panel, Pill, PrimaryButton, RowItem, Screen, SectionTitle, colors } from "@/src/components/ui";
 import { RelationshipEvent } from "@/src/domain/models";
+import { HolidayPreset, buildHolidayEvent, missingDefaultHolidayPresets, missingHolidayPresets } from "@/src/domain/holidayPresets";
 import { eventRepo } from "@/src/db/repositories/eventRepo";
 import { partnerRepo } from "@/src/db/repositories/partnerRepo";
 import { id, nowUtcISO, todayISO } from "@/src/utils/dates";
@@ -43,6 +44,27 @@ export default function CalendarScreen() {
     await load();
   }
 
+  async function addSuggestedDates() {
+    const [partner] = await partnerRepo.list();
+    if (!partner) return;
+    const today = todayISO();
+    const existingEvents = await eventRepo.list(partner.id);
+    for (const preset of missingDefaultHolidayPresets(existingEvents)) {
+      await eventRepo.save(buildHolidayEvent(preset, partner.id, today));
+    }
+    await load();
+  }
+
+  async function addPreset(preset: HolidayPreset) {
+    const [partner] = await partnerRepo.list();
+    if (!partner) return;
+    await eventRepo.save(buildHolidayEvent(preset, partner.id, todayISO()));
+    await load();
+  }
+
+  const suggestedDates = missingHolidayPresets(events);
+  const defaultSuggestedDates = missingDefaultHolidayPresets(events);
+
   return (
     <Screen>
       <SectionTitle
@@ -61,9 +83,22 @@ export default function CalendarScreen() {
       </Panel>
       <Panel>
         <RowItem
+          icon={<CalendarHeart color={colors.amber} size={22} />}
+          title="Add the obvious dates."
+          meta="Valentine's, Christmas, New Year's, and Mother’s Day presets give the app useful reminders without a long setup session."
+        />
+        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10 }}>
+          {suggestedDates.slice(0, 6).map((preset) => (
+            <Pill key={preset.key} label={preset.title} onPress={() => addPreset(preset)} tone={preset.eventType === "mothers_day" ? "watch" : "info"} />
+          ))}
+        </View>
+        <PrimaryButton label={defaultSuggestedDates.length ? "Add standard date pack" : "Standard dates added"} disabled={!defaultSuggestedDates.length} onPress={addSuggestedDates} />
+      </Panel>
+      <Panel>
+        <RowItem
           icon={<CalendarPlus color={colors.sage} size={22} />}
           title="Add Important Date"
-          meta="Manual holidays stay manual so country-specific dates do not get guessed."
+          meta="Add birthdays, anniversaries, first-met dates, or anything personal the presets will never know."
         />
         <Field label="Title" value={title} onChangeText={setTitle} />
         <Field label="Date (YYYY-MM-DD)" value={date} onChangeText={setDate} />

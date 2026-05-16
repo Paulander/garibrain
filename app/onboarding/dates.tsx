@@ -2,14 +2,16 @@ import { router } from "expo-router";
 import { Text } from "react-native";
 import { eventRepo } from "@/src/db/repositories/eventRepo";
 import { partnerRepo } from "@/src/db/repositories/partnerRepo";
+import { buildHolidayEvent, holidayPresets, defaultSuggestedHolidayKeys } from "@/src/domain/holidayPresets";
 import { id, nowUtcISO, todayISO } from "@/src/utils/dates";
 import { Panel, PrimaryButton, Screen, SectionTitle, SecondaryButton, colors } from "@/src/components/ui";
 
 export default function DatesSetup() {
-  async function addFromProfile() {
+  async function addFromProfile(includeSuggested = false) {
     const [partner] = await partnerRepo.list();
     if (!partner) return router.push("/onboarding/preferences");
     const now = nowUtcISO();
+    const today = todayISO();
     const events = [
       partner.birthday ? { title: `${partner.displayName}'s birthday`, eventType: "birthday" as const, date: partner.birthday } : null,
       partner.anniversary ? { title: "Anniversary", eventType: "anniversary" as const, date: partner.anniversary } : null,
@@ -30,7 +32,12 @@ export default function DatesSetup() {
         updatedAt: now
       });
     }
-    if (!events.length) {
+    if (includeSuggested) {
+      for (const preset of holidayPresets.filter((entry) => defaultSuggestedHolidayKeys.has(entry.key))) {
+        await eventRepo.save(buildHolidayEvent(preset, partner.id, today));
+      }
+    }
+    if (!events.length && !includeSuggested) {
       await eventRepo.save({
         id: id("event"),
         partnerId: partner.id,
@@ -51,12 +58,13 @@ export default function DatesSetup() {
 
   return (
     <Screen>
-      <SectionTitle eyebrow="Setup" title="Important Dates" subtitle="Mother's Day varies by country, so keep it manual for now." />
+      <SectionTitle eyebrow="Setup" title="Important Dates" subtitle="Add the basics now; personalize later when you have energy." />
       <Panel>
         <Text style={{ color: colors.muted2, lineHeight: 22 }}>
-          PartnerOps can turn saved birthdays, anniversaries, and custom dates into lead reminders and Today cards.
+          PartnerOps can start with profile dates plus common gift/date holidays like Valentine's, Christmas, New Year's, and Mother’s Day presets.
         </Text>
-        <PrimaryButton label="Use profile dates" onPress={addFromProfile} />
+        <PrimaryButton label="Use profile + suggested dates" onPress={() => addFromProfile(true)} />
+        <SecondaryButton label="Use profile dates only" onPress={() => addFromProfile(false)} />
         <SecondaryButton label="Skip for now" onPress={() => router.push("/onboarding/preferences")} />
       </Panel>
     </Screen>

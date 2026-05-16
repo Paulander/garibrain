@@ -31,4 +31,18 @@ describe("recurrence", () => {
   it("advances weekly recurring events", () => {
     expect(nextEventOccurrence(event({ date: "2026-05-01", recurrence: "weekly" }), "2026-05-12")).toBe("2026-05-15");
   });
+
+  it("handles custom Mother's Day recurrence rules", () => {
+    expect(nextEventOccurrence(event({
+      date: "2026-05-31",
+      recurrence: "custom",
+      recurrenceRule: "SE_MOTHERS_DAY_LAST_SUNDAY_MAY"
+    }), "2027-01-01")).toBe("2027-05-30");
+
+    expect(nextEventOccurrence(event({
+      date: "2026-05-10",
+      recurrence: "custom",
+      recurrenceRule: "US_MOTHERS_DAY_SECOND_SUNDAY_MAY"
+    }), "2027-01-01")).toBe("2027-05-09");
+  });
 });

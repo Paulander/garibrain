@@ -1,10 +1,11 @@
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { Text, View } from "react-native";
-import { AlertTriangle, CheckCircle2, Clock3, MessageSquareWarning, ShieldCheck, Undo2 } from "lucide-react-native";
+import { AlertTriangle, CheckCircle2, Clock3, Lightbulb, MessageSquareWarning, ShieldCheck, Undo2 } from "lucide-react-native";
 import { BrandMark, Field, Panel, Pill, PrimaryButton, RowItem, Screen, SectionTitle, colors } from "@/src/components/ui";
 import { Idea } from "@/src/domain/models";
 import { generatePanicIdeas, PanicRequest } from "@/src/domain/panicGenerator";
+import { tipsForTags } from "@/src/domain/promptCoach";
 import { ideaRepo } from "@/src/db/repositories/ideaRepo";
 import { partnerRepo } from "@/src/db/repositories/partnerRepo";
 import { preferenceRepo } from "@/src/db/repositories/preferenceRepo";
@@ -13,6 +14,7 @@ import { settingsRepo } from "@/src/db/repositories/settingsRepo";
 export default function PanicScreen() {
   const [budget, setBudget] = useState<PanicRequest["budget"]>("medium");
   const [timeline, setTimeline] = useState<PanicRequest["timeline"]>("one_week");
+  const [type, setType] = useState<PanicRequest["type"]>("gift");
   const [occasion, setOccasion] = useState("Anniversary");
   const [ideas, setIdeas] = useState<Idea[]>([]);
 
@@ -28,7 +30,7 @@ export default function PanicScreen() {
       partnerId: partner.id,
       budget,
       timeline,
-      type: "gift",
+      type,
       tone: "practical",
       useSavedPreferences: true,
       toneMode: settings?.toneMode ?? "standard"
@@ -39,6 +41,8 @@ export default function PanicScreen() {
   async function saveIdea(idea: Idea) {
     await ideaRepo.save({ ...idea, saved: true, updatedAt: new Date().toISOString() });
   }
+
+  const tips = tipsForTags([type, timeline === "today" || timeline === "few_days" ? "panic" : "planning", "gift", "sizes"], 3);
 
   return (
     <Screen>
@@ -57,6 +61,11 @@ export default function PanicScreen() {
       </Panel>
       <Panel>
         <Field label="Occasion" value={occasion} onChangeText={setOccasion} />
+        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10 }}>
+          {(["gift", "date", "message", "trip", "apology"] as const).map((option) => (
+            <Pill key={option} label={option} selected={type === option} onPress={() => setType(option)} tone={option === "apology" ? "watch" : "default"} />
+          ))}
+        </View>
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10 }}>
           {(["low", "medium", "high", "unknown"] as const).map((option) => (
             <Pill key={option} label={option} selected={budget === option} onPress={() => setBudget(option)} tone={option === "high" ? "watch" : "info"} />
@@ -91,6 +100,23 @@ export default function PanicScreen() {
             title={item}
             meta={index < 3 ? "Ready" : "Check before sending"}
           />
+        ))}
+      </Panel>
+      <Panel>
+        <RowItem
+          icon={<Lightbulb color={colors.amber} size={22} />}
+          title="Tip Library"
+          meta="Small scripts for getting facts without making the moment strange."
+        />
+        {tips.map((tip) => (
+          <View key={tip.id} style={{ gap: 8, borderTopWidth: 1, borderTopColor: colors.line, paddingTop: 10 }}>
+            <Text style={{ color: colors.ivory, fontWeight: "800", fontSize: 15 }}>{tip.title}</Text>
+            <Text style={{ color: colors.muted2, lineHeight: 21 }}>{tip.body}</Text>
+            {tip.do.slice(0, 2).map((item) => (
+              <RowItem key={item} icon={<CheckCircle2 color={colors.sage} size={18} />} title={item} />
+            ))}
+            <Text style={{ color: colors.amber, lineHeight: 21 }}>Avoid: {tip.avoid}</Text>
+          </View>
         ))}
       </Panel>
       {ideas.map((idea) => (

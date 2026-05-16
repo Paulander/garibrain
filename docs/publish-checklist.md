@@ -14,6 +14,8 @@ This checklist separates what is already prepared in the repo from what requires
 - Version `0.1.0`, iOS build `1`, Android versionCode `1`.
 - Local-first privacy posture documented.
 - Draft privacy policy, support page, store listing, and data safety notes added.
+- Guided prompt coach and tip library added to the app.
+- SEO page drafts and Google Ads campaign draft added.
 - Tests and typecheck pass.
 
 ## Owner Tasks Before Internal Testing
@@ -29,6 +31,8 @@ This checklist separates what is already prepared in the repo from what requires
   - Support/contact
   - Optional marketing/home page
 - Replace placeholder support/contact text with final email/URLs.
+- Publish the SEO pages from `docs/seo-webpages.md` on the final marketing domain.
+- Prepare ad images/video/screenshot assets from `docs/google-ads-campaign.md`.
 
 ## Build Commands
 
@@ -97,10 +101,12 @@ PartnerOps is a local-first private memory and planning app. It does not include
 - Add partner.
 - Add date.
 - Add preference and dislike.
+- Use Memory Prompt Coach to add sizes, gift landmines, and support cues.
 - Add support pattern.
 - Add cycle support settings.
+- Confirm Cycle Support notes frame recurring symptoms as support cues, not diagnosis.
 - Confirm Today advice updates.
-- Confirm Panic Helper uses preferences and excludes dislikes.
+- Confirm Panic Helper uses preferences, excludes dislikes, and shows tip cards.
 - Confirm debrief follow-up appears.
 - Confirm app lock works on real iOS/Android.
 - Confirm notification permission flow and privacy text.
@@ -114,3 +120,4 @@ PartnerOps is a local-first private memory and planning app. It does not include
 - Final support email.
 - Final pricing: free/internal only for MVP, or future subscription.
 - Final screenshots.
+- Final Google Ads daily test budget and install target.

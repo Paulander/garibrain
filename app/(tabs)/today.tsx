@@ -1,7 +1,7 @@
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { Text, View } from "react-native";
-import { CalendarDays, ClipboardList, Menu, Plus, ShieldCheck } from "lucide-react-native";
+import { CalendarDays, ClipboardList, Gift, Menu, Plus, ShieldCheck } from "lucide-react-native";
 import { AdviceCard } from "@/src/components/AdviceCard";
 import { SupportWindowCard } from "@/src/components/SupportWindowCard";
 import { BrandMark, Metric, Panel, Pill, PrimaryButton, RowItem, Screen, SectionTitle, colors } from "@/src/components/ui";
@@ -125,8 +125,13 @@ export default function TodayScreen() {
       )}
       <Panel>
         <Text style={{ color: colors.ivory, fontWeight: "800", fontSize: 16 }}>Quick Capture</Text>
+        <RowItem
+          icon={<Gift color={colors.amber} size={22} />}
+          title="Prep the last-minute save."
+          meta="Gift ideas only work fast if sizes, safe picks, dislikes, and preferences are already saved."
+        />
         <View style={{ flexDirection: "row", gap: 10 }}>
-          <PrimaryButton label="Add Intel" onPress={() => router.push("/memory" as never)} />
+          <PrimaryButton label="Add gift intel" onPress={() => router.push("/memory" as never)} />
           <PrimaryButton label="New Debrief" onPress={() => router.push("/debrief/new" as never)} />
         </View>
         <View style={{ flexDirection: "row", gap: 10, alignItems: "center" }}>

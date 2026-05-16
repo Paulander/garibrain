@@ -3,6 +3,7 @@ import { SupportWindow } from "@/src/domain/cycleEngine";
 import { daysBetween, daysUntil, id, isWithinInclusive } from "@/src/utils/dates";
 import { eventAdviceCopy, supportCopy } from "@/src/utils/tone";
 import { nextEventOccurrence } from "@/src/domain/recurrence";
+import { generatePromptCoachCards } from "@/src/domain/promptCoach";
 
 export interface AdviceInput {
   today: string;
@@ -61,6 +62,8 @@ export function generateAdviceCards(input: AdviceInput): AdviceCard[] {
   if (!input.preferences.length) {
     cards.push(card("low", "Add first detail", "Your memory is currently doing all the work. This is historically unreliable.", "Capture detail", "/memory"));
   }
+
+  cards.push(...generatePromptCoachCards(input.preferences, input.supportWindows.length > 0));
 
   return cards
     .sort((a, b) => priorityRank(b.priority) - priorityRank(a.priority))

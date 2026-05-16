@@ -10,6 +10,8 @@ Reference direction: dark private ops log, sage shield mark, compact dashboard c
 - Restyled tab navigation to match the reference: line icons, dark tab bar, sage active state.
 - Redesigned Today with snapshot metrics, current briefing, support cards, advice cards, and quick capture.
 - Redesigned Panic with red panic panel, quick action cards, checklist, and elevated generated ideas.
+- Added Prompt Coach content for guided capture: safe gifts, gift landmines, sizes, allergies, monthly support cues, stress rules, date ideas, family dates, and sensitive topics.
+- Added contextual tip cards for asking about sizes, verifying gifts, using monthly notes as support, and recovering late plans.
 - Updated Calendar, Memory, Settings, onboarding, Support Calendar, and Debrief screens to share the same visual language.
 - Added a local SVG brand mark source for later icon and splash asset production.
 - Added generated Expo app icon, Android adaptive icon, splash icon, and web favicon from project SVG sources.
@@ -24,6 +26,8 @@ Reference direction: dark private ops log, sage shield mark, compact dashboard c
 - Decide whether web should remain a phone-width preview or become a true responsive PWA layout.
 - Replace placeholder profile/settings copy with production copy and support/privacy URLs.
 - Do device QA for biometrics, notifications, secure storage, and SQLite on actual iOS/Android.
+- Create public marketing pages from `docs/seo-webpages.md`.
+- Create Google Ads App campaign assets from `docs/google-ads-campaign.md`.
 - Run imagegen variants only if the deterministic icon is not strong enough after review.
 
 ## Asset prompts to run later
